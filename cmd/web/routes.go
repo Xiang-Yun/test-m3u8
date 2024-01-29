@@ -20,7 +20,7 @@ func (app *application) routes() http.Handler {
 	}
 	mux.Use(cors.New(corsOptions).Handler)
 
-	mux.Get("/virtual-terminal", app.VirtualTerminal)
+	mux.Get("/", app.VirtualTerminal)
 
 	mux.Route("/Media", func(r chi.Router) {
 		r.Use(func(next http.Handler) http.Handler {
