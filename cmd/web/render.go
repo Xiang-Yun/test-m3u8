@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"strings"
 	"text/template"
+
+	"github.com/justinas/nosurf"
 )
 
 type templateData struct {
@@ -28,6 +30,7 @@ var functions = template.FuncMap{}
 var templateFS embed.FS
 
 func (app *application) addDefaultData(td *templateData, r *http.Request) *templateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 

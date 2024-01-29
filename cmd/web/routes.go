@@ -4,11 +4,14 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 )
 
 func (app *application) routes() http.Handler {
 	mux := chi.NewRouter()
+
+	mux.Use(middleware.Recoverer)
 
 	corsOptions := cors.Options{
 		AllowedOrigins:   []string{"https://*", "http://*"}, // 允許所有來源
@@ -20,7 +23,7 @@ func (app *application) routes() http.Handler {
 	}
 	mux.Use(cors.New(corsOptions).Handler)
 
-	mux.Get("/", app.VirtualTerminal)
+	mux.Get("/", app.Video)
 
 	mux.Route("/Media", func(r chi.Router) {
 		r.Use(func(next http.Handler) http.Handler {

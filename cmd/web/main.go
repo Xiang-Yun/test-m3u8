@@ -17,9 +17,6 @@ type config struct {
 	port int
 	env  string
 	api  string
-	db   struct {
-		dsn string
-	}
 }
 
 type application struct {
