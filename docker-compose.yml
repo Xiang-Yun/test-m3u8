@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  test-m3u8:
+    build: .
+    restart: always
+    ports:
+      - "3500:3500"
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+      - ./Media:/Media

@@ -45,8 +45,6 @@
             var hls = new Hls();
             hls.loadSource('http://localhost:3500' + m3u8Files[i] + '.m3u8');
             hls.attachMedia(video);
-            hls.startLoad(10000);
-
         }
         // HLS.js is not supported on platforms that do not have Media Source
         // Extensions (MSE) enabled.
